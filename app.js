@@ -9,7 +9,7 @@ const session = require('express-session')
 const passport = require('passport')
 const mongoose = require('mongoose')
 
-const index = require('./routes/index')
+const routes = require('./routes/index')
 // const users = require('./routes/users')
 
 // Init App
@@ -25,7 +25,8 @@ app.listen(port, () => {
 })
 
 // View Engine
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('views', path.join(__dirname, 'views'))
+app.engine('handlebars', exphbs({defaultLayout: 'layout'}))
 app.set('view engine', 'handlebars')
 
 // Body Parser Middleware
@@ -64,7 +65,7 @@ app.use(expressValidator({
   }
 }))
 
-app.use('/', index);
+app.use('/', routes);
 // app.use('/users', users);
 
 // Error Handling
