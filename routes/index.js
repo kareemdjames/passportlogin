@@ -8,6 +8,11 @@ router.get('/', (req, res, next) => {
   res.render('index')
 })
 
+// Login Form
+router.get('/login', (req, res, next) => {
+  res.render('login')
+})
+
 // Register Form
 router.get('/register', (req, res, next) => {
   res.render('register')
