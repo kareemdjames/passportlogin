@@ -40,6 +40,10 @@ app.use(session({
   resave: true
 }))
 
+// Init Passport
+app.use(passport.initialize())
+app.use(passport.session())
+
 // Express Messages
 app.use(flash())
 app.use((req, res, next) => {
