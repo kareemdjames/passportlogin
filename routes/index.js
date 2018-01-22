@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
+let User = require('../models/user')
+
 // Home Page
 router.get('/', (req, res, next) => {
   res.render('index')
@@ -34,9 +36,19 @@ router.post('/register', (req, res, next) => {
       errors: errors
     })
   } else {
-    console.log('success')
-    return
+    const newUser = new User({
+      name: name,
+      username: username,
+      email: email,
+      password: password
+    })
+
+    User.registerUser(newUser, (err, user) => {
+      if(err) throw err;
+      res.redirect('/login')
+    })
   }
 })
+
 
 module.exports = router
