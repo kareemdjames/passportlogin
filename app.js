@@ -44,9 +44,11 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Express Messages
+// Connect Flash
 app.use(flash())
-app.use((req, res, next) => {
+
+// Flash Messages
+app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg')
   res.locals.error_msg = req.flash('error_msg')
   res.locals.error = req.flash('error')
@@ -76,6 +78,7 @@ app.use('/', routes);
 // app.use('/users', users);
 
 // Error Handling
+
 app.use('*', (req, res) => {
   res.status(404).send({
     error: 'Not Found',
