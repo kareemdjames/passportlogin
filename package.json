@@ -1,0 +1,30 @@
+{
+  "name": "passportlogin",
+  "version": "1.0.0",
+  "description": "user auth app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "debugger": "DEBUG=*:* npm run dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "morgan": "*",
+    "body-parser": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-validator": "*",
+    "express-session": "*",
+    "connect-flash": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "bcryptjs": "*",
+    "flash": "*"
+  }
+}
