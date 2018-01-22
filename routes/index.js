@@ -7,7 +7,7 @@ const LocalStrategy = require('passport-local').Strategy
 let User = require('../models/user')
 
 // Home Page
-router.get('/', (req, res, next) => {
+router.get('/',ensureAuthenticated, (req, res, next) => {
   res.render('index')
 })
 
@@ -19,6 +19,13 @@ router.get('/login', (req, res, next) => {
 // Register Form
 router.get('/register', (req, res, next) => {
   res.render('register')
+})
+
+// Logout
+router.get('/logout', (req, res, next) => {
+  req.logout()
+  req.flash('success_msg', 'You are logged out')
+  res.redirect('/login')
 })
 
 // Process Register
@@ -99,5 +106,14 @@ router.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
+// Access Control
+function ensureAuthenticated(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next()
+  } else {
+    req.flash('error_msg', 'You are not authorized to view that page')
+    res.redirect('/login')
+  }
+}
 
 module.exports = router
