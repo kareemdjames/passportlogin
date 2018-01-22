@@ -9,8 +9,8 @@ const session = require('express-session')
 const passport = require('passport')
 const mongoose = require('mongoose')
 
-// const index = require('./routes/index')
-// const users = require('./routes/users')
+const index = require('./routes/index')
+const users = require('./routes/users')
 
 // Init App
 const app = express()
@@ -64,10 +64,12 @@ app.use(expressValidator({
   }
 }))
 
-// app.use('/', index);
-// app.use('/users', users);
+app.use('/', index);
+app.use('/users', users);
 
-// index route
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
+// Error Handling
+app.use('*', (req, res) => {
+  res.status(404).send({
+    error: 'Not Found',
+  })
+})
