@@ -6,27 +6,56 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Passport App</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
 </head>
 <body>
 
-  {{#if success_msg}}
-    <div class="alert alert-success">{{success_msg}}</div>
-  {{/if}}
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Passport App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  {{#if error_msg}}
-    <div class="alert alert-danger">{{error_msg}}</div>
-  {{/if}}
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        {{#if user}}
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
 
-  {{#if error}}
-    <div class="alert alert-danger">{{error}}</div>
-  {{/if}}
+  <div class="container">
+    {{#if success_msg}}
+      <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}}
 
-  {{#if errors}}
-    {{#each errors}}
-      <div class="alert alert-danger">{{msg}}</div>
-    {{/each}}
-  {{/if}}
+    {{#if error_msg}}
+      <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
 
-  {{{body}}}
+    {{#if error}}
+      <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+
+    {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+    {{/if}}
+
+    {{{body}}}
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
