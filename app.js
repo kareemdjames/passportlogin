@@ -10,7 +10,7 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 
 const index = require('./routes/index')
-const users = require('./routes/users')
+// const users = require('./routes/users')
 
 // Init App
 const app = express()
@@ -65,7 +65,7 @@ app.use(expressValidator({
 }))
 
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
 
 // Error Handling
 app.use('*', (req, res) => {
